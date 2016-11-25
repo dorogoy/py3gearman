@@ -185,9 +185,7 @@ class GearmanConnection(object):
         packed_data += self._outgoing_buffer
         while self._outgoing_commands:
             cmd_type, cmd_args = self._outgoing_commands.popleft()
-            # encodig. but failed on python3.
-            # packed_command = self._pack_command(cmd_type, cmd_args).encode()
-            packed_command = self._pack_command(cmd_type, cmd_args)
+            packed_command = self._pack_command(cmd_type, cmd_args).encode()
             packed_data += packed_command
 
         self._outgoing_buffer = bytes(packed_data)
